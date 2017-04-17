@@ -26,12 +26,10 @@ if(!isset($_SESSION['zoo']) || !empty($_POST['new'])) {
 <body>
 
 	<div class="container">
-		<div>
-			<?php echo $zoo->getHour(); ?> hour
-		</div>
-
 		<table class="table table-condensed table-hover">
-
+			<caption>
+				Time: <?php echo $zoo->getHour(); ?> hour
+			</caption>
 			<thead>
 				<th>Animal</th>
 				<th>Name</th>
@@ -61,9 +59,9 @@ if(!isset($_SESSION['zoo']) || !empty($_POST['new'])) {
 		</table>
 
 		<form method="post">
-			<input type="submit" value="Feed" name="feed">
-			<input type="submit" value="Next Hour" name="tick">
-			<input type="submit" value="new Zoo" name="new">
+			<input class="btn" type="submit" value="Feed" name="feed">
+			<input class="btn"  type="submit" value="Next Hour" name="tick">
+			<input class="btn pull-right"  type="submit" value="new Zoo" name="new">
 		</form>
 	</div>
 	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap-css/css/bootstrap.min.css" ></style>
