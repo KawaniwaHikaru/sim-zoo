@@ -12,7 +12,6 @@ abstract class Animal
 
     // constant state
     const ALIVE = 'alive';
-    const IMMOBILE = 'immobile';
     const DEAD = 'dead';
 
     public function __construct() {
@@ -71,9 +70,6 @@ abstract class Animal
     public function stateChange($newState) {
         $this->state = $newState;
     }
-
-
-
 }
 
 class Monkey extends Animal {
@@ -113,16 +109,18 @@ class Elephant extends Animal {
     // When an Elephant has a health below 70% it cannot walk.
     // If its health does not return above 70% once the subsequent hour has elapsed, it is pronounced dead.
     const FLATLINE = 70;
+    const IMMOBILE = 'immobile';
 
+    // overwriting feed
     public function feed($perc) {
         parent::feed($perc);
 
         if ($this->getState() == Animal::DEAD) return;
 
         // if we are immobile and our HP is now greater then 70%, we are alive
-        if ($this->getState() == Animal::IMMOBILE) {
+        if ($this->getState() == self::IMMOBILE) {
 
-            if ($this->getHP() >= 70)
+            if ($this->getHP() >= self::FLATLINE)
                 $this->stateChange(Animal::ALIVE); // revive this elephant
             // else 
             //     $this->stateChange(Animal::DEAD);  // too late, this animal is still dead
@@ -137,11 +135,11 @@ class Elephant extends Animal {
 
 
         // If its health does not return above 70% once the subsequent hour has elapsed, it is pronounced dead.
-        if ($this->getState() == Animal::IMMOBILE)
+        if ($this->getState() == self::IMMOBILE)
             $this->stateChange(Animal::DEAD);
 
         else if ($this->getHP() < self::FLATLINE) {
-            $this->stateChange(Animal::IMMOBILE);
+            $this->stateChange(self::IMMOBILE);
         }
     }
 }

@@ -39,15 +39,17 @@ if(!isset($_SESSION['zoo']) || !empty($_POST['new'])) {
 
 			<tbody>
 				<?php foreach($zoo->getAnimals() as $animal): ?>
-					<tr class="<?php echo $animal->getState() == Animal::ALIVE ? 'active' : ($animal->getState() == Animal::IMMOBILE?'warning':'danger') ?>">
+					<tr class="<?php echo $animal->getState() == Animal::ALIVE ? 'active' : ($animal->getState() == Elephant::IMMOBILE?'warning':'danger') ?>">
 						<td>
 							<?php echo $animal->getType(); ?>
 						</td>
 						<td>
 							<?php echo $animal->getName(); ?>
 						</td>
-						<td>
-							<?php echo number_format($animal->getHP(), 2); ?>%
+						<td >
+							<div class="pull-right">
+							<?php echo number_format($animal->getHP(), 2); ?> %
+							</div>
 						</td>
 						<td>
 							<?php echo $animal->getState() ?>
